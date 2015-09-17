@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  avatar: MyString
+  sex: false
+  admission: 2015-09-15
+  dismiss: 2015-09-15
+
+two:
+  name: MyString
+  avatar: MyString
+  sex: false
+  admission: 2015-09-15
+  dismiss: 2015-09-15

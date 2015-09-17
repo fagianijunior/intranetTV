@@ -1,0 +1,29 @@
+<%= simple_form_for(@employer, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Nome completo' %>
+    <%= f.input :avatar, label: 'Foto' %>
+    <%= f.input :sex, label: 'Sexo',
+                      as: :select,
+                      default: 'M',
+                      selected: @employer.sex,
+                      collection: [['Masculino', 'M'], ['Feminino', 'F']] %>
+    <%= f.input :admission, label: 'Admissão:',
+                            as: :date,
+                            end_year: Date.today.year,
+                            start_year: Date.today.year - 10,
+                            order: [:day, :month, :year] %>
+    <%= if f.object.new_record?
+          f.input :dismiss, label: 'Demissão:',
+                            prompt: '---', as: :date,
+                            end_year: Date.today.year,
+                            start_year: Date.today.year - 10,
+                            order: [:day, :month, :year]
+        end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, value: "Salvar", class: "btn-primary btn-block" %>
+  </div>
+<% end %>

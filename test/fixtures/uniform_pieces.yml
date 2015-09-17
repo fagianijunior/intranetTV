@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry: 2015-09-16
+  delivered: 2015-09-16
+  delivery_reason: MyText
+  returned: 2015-09-16
+  return_reason: MyText
+  clothing_size: 1
+  shoes_size: 1
+  color: MyString
+  uniform_piece_kind_id: 
+  uniform_piece_group_id: 
+  employer_id: 
+
+two:
+  entry: 2015-09-16
+  delivered: 2015-09-16
+  delivery_reason: MyText
+  returned: 2015-09-16
+  return_reason: MyText
+  clothing_size: 1
+  shoes_size: 1
+  color: MyString
+  uniform_piece_kind_id: 
+  uniform_piece_group_id: 
+  employer_id: 

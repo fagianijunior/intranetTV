@@ -1,0 +1,112 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Uniformes</h1>
+
+
+<div class="row">
+  <div class="col-md-12 column">
+    <div class="row">
+      <div class="col-md-12 column">
+        <%= link_to 'Nova peça de uniforme', new_uniform_piece_path, class: "btn btn-primary" %>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 column">
+    		<div class="panel-group" id="panel-163973">
+          <% UniformPieceGroup.all.each_with_index do |uniformGroup, i| %>
+      			<div class="panel panel-default">
+      				<div class="panel-heading">
+      					 <a class="panel-title" data-toggle="collapse" data-parent="#panel-163973" href="#collapse-<%= i %>"><%= uniformGroup.name %></a>
+      				</div>
+      				<div id="collapse-<%= i %>" class="panel-collapse collapse">
+      					<div class="panel-body">
+                  <% UniformPieceKind.all.each_with_index do |uniformPieceKind, j| %>
+                    <div class="col-md-3">
+                      <div class="thumbnail">
+                        <div class="caption">
+                          <h4 class="text-center">
+                            <%= uniformPieceKind.name %> - <%= UniformPiece.where(uniform_piece_kind_id: uniformPieceKind.id).where(uniform_piece_group_id: uniformGroup.id).count(:uniform_piece_kind_id) %><br>
+                            <% UniformPiece.select(:clothing_size).where(uniform_piece_kind_id: uniformPieceKind.id).where(uniform_piece_group_id: uniformGroup.id).each do |clothingSize| %>
+                              <%= clothingSize.clothing_size %>
+                            <% end %>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+      					</div>
+      				</div>
+      			</div>
+          <% end %>
+    		</div>
+    	</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Delivered</th>
+      <th>Delivery reason</th>
+      <th>Returned</th>
+      <th>Return reason</th>
+      <th>Clothing size</th>
+      <th>Shoes size</th>
+      <th>Color</th>
+      <th>Uniform piece kind</th>
+      <th>Uniform piece group</th>
+      <th>Employer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uniform_pieces.each do |uniform_piece| %>
+      <tr>
+        <td><%= uniform_piece.entry %></td>
+        <td><%= uniform_piece.delivered %></td>
+        <td><%= uniform_piece.delivery_reason %></td>
+        <td><%= uniform_piece.returned %></td>
+        <td><%= uniform_piece.return_reason %></td>
+        <td><%= uniform_piece.clothing_size %></td>
+        <td><%= uniform_piece.shoes_size %></td>
+        <td><%= uniform_piece.color %></td>
+        <td><%= uniform_piece.uniform_piece_kind.name %></td>
+        <td><%= uniform_piece.uniform_piece_group.name %></td>
+        <td><%= uniform_piece.employer %></td>
+        <td><%= link_to 'Show', uniform_piece %></td>
+        <td><%= link_to 'Edit', edit_uniform_piece_path(uniform_piece) %></td>
+        <td><%= link_to 'Destroy', uniform_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Uniform piece', new_uniform_piece_path %>

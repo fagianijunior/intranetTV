@@ -1,0 +1,69 @@
+<%= simple_form_for(@uniform_piece) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= if f.object.new_record?
+          f.input :amount, label: 'Quantidade de entrada:',
+                           as: :select,
+                           default: 1,
+                          collection: 1..20
+        else
+          f.input :amount, as: :hidden, input_html: { value: 0 }
+        end %>
+    <%= f.input :entry, label: 'Data de entrada no estoque:',
+                        as: :date,
+                        end_year: Date.today.year + 5,
+                        start_year: Date.today.year - 5,
+                        order: [:day, :month, :year] %>
+    <%= f.association :uniform_piece_kind, label: 'Tipo de peça:' %>
+    <%= f.association :uniform_piece_group, label: 'Grupo:' %>
+    <%= if !f.object.new_record?
+          f.input :delivered, label: 'Data de entrega ao funcionário:',
+                              as: :date,
+                              prompt: '---',
+                              end_year: Date.today.year + 5,
+                              start_year: Date.today.year - 5,
+                              order: [:day, :month, :year]
+        end %>
+    <%= if !f.object.new_record?
+          f.input :delivery_reason, label: 'Obs. sobre entrega da peça ao funcionário:'
+        end %>
+    <%= if !f.object.new_record?
+          f.input :returned, label: 'Data de devolução:',
+                             as: :date,
+                             prompt: '---',
+                             end_year: Date.today.year + 5,
+                             start_year: Date.today.year - 5,
+                             order: [:day, :month, :year]
+        end %>
+    <%= if !f.object.new_record?
+          f.input :return_reason, label: 'Obs. sobre devolução da peça pelo funcionário:'
+        end %>
+    <%= f.input :clothing_size, label: 'Tamanho da peça: (se aplicável)',
+                                as: :select,
+                                prompt: 'Não aplicável',
+                                selected: @uniform_piece.clothing_size,
+                                collection: [["PP", 0],
+                                             ["P", 1],
+                                             ["M", 2],
+                                             ["G", 3],
+                                             ["GG", 4],
+                                             ["3G", 5],
+                                             ["4G", 6],
+                                             ["5G", 7]] %>
+    <%= f.input :shoes_size, label: 'Tamanho do calçado: (se aplicável)',
+                             as: :select,
+                             prompt: 'Não aplicável',
+                             selected: @uniform_piece.shoes_size,
+                             collection: 33..44 %>
+    <%= f.input :color, label: "Cor:" %>
+    <%= if !f.object.new_record?
+          f.input :used, label: 'Peça usada'
+    end %>
+    <!-- %= f.association :employer %-->
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, value: 'Salvar' %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IntranetTv</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render "layouts/header" %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 column">
+        <%= render "layouts/menu" %>
+      </div>
+      <div class="col-md-10 column">
+        <%= yield %>
+      </div>
+    </div>
+    <div class="row">
+      <!-- %= render "layouts/footer" % -->
+    </div>
+  </div>
+</body>
+</html>

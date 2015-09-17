@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Entry:</strong>
+  <%= @uniform_piece.entry %>
+</p>
+
+<p>
+  <strong>Delivered:</strong>
+  <%= @uniform_piece.delivered %>
+</p>
+
+<p>
+  <strong>Delivery reason:</strong>
+  <%= @uniform_piece.delivery_reason %>
+</p>
+
+<p>
+  <strong>Returned:</strong>
+  <%= @uniform_piece.returned %>
+</p>
+
+<p>
+  <strong>Return reason:</strong>
+  <%= @uniform_piece.return_reason %>
+</p>
+
+<p>
+  <strong>Clothing size:</strong>
+  <%= @uniform_piece.clothing_size %>
+</p>
+
+<p>
+  <strong>Shoes size:</strong>
+  <%= @uniform_piece.shoes_size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @uniform_piece.color %>
+</p>
+
+<p>
+  <strong>Uniform piece kind:</strong>
+  <%= @uniform_piece.uniform_piece_kind %>
+</p>
+
+<p>
+  <strong>Uniform piece group:</strong>
+  <%= @uniform_piece.uniform_piece_group %>
+</p>
+
+<p>
+  <strong>Employer:</strong>
+  <%= @uniform_piece.employer %>
+</p>
+
+<%= link_to 'Edit', edit_uniform_piece_path(@uniform_piece) %> |
+<%= link_to 'Back', uniform_pieces_path %>

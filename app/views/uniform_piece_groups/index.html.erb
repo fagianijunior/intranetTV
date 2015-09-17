@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Uniform Piece Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @uniform_piece_groups.each do |uniform_piece_group| %>
+      <tr>
+        <td><%= uniform_piece_group.name %></td>
+        <td><%= link_to 'Show', uniform_piece_group %></td>
+        <td><%= link_to 'Edit', edit_uniform_piece_group_path(uniform_piece_group) %></td>
+        <td><%= link_to 'Destroy', uniform_piece_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Uniform piece group', new_uniform_piece_group_path %>
