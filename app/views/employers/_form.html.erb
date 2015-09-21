@@ -14,7 +14,7 @@
                             end_year: Date.today.year,
                             start_year: Date.today.year - 10,
                             order: [:day, :month, :year] %>
-    <%= if f.object.new_record?
+    <%= if !f.object.new_record?
           f.input :dismiss, label: 'Demissão:',
                             prompt: '---', as: :date,
                             end_year: Date.today.year,

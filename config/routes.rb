@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  resources :uniform_pieces
+  resources :uniform_pieces do 
+    member do
+      put 'returned'
+    end
+  end
+
   resources :uniform_piece_groups
   get 'home/index'
 
   resources :uniform_piece_kinds
   resources :employers
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

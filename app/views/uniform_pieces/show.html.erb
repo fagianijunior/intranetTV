@@ -1,38 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Entry:</strong>
+  <strong>Data de entrada:</strong>
   <%= @uniform_piece.entry %>
 </p>
 
 <p>
-  <strong>Delivered:</strong>
+  <strong>Data de entrega ao funcionário:</strong>
   <%= @uniform_piece.delivered %>
 </p>
 
 <p>
-  <strong>Delivery reason:</strong>
+  <strong>Obs. sobre entregada peça ao funcionário:</strong>
   <%= @uniform_piece.delivery_reason %>
 </p>
 
 <p>
-  <strong>Returned:</strong>
+  <strong>Data de devolução da peça pelo funcionário:</strong>
   <%= @uniform_piece.returned %>
 </p>
 
 <p>
-  <strong>Return reason:</strong>
+  <strong>Obs. sobre a devolução da peça:</strong>
   <%= @uniform_piece.return_reason %>
 </p>
 
 <p>
-  <strong>Clothing size:</strong>
-  <%= @uniform_piece.clothing_size %>
-</p>
-
-<p>
-  <strong>Shoes size:</strong>
-  <%= @uniform_piece.shoes_size %>
+  <strong>Tamanho da peça:</strong>
+  <%= @uniform_piece.uniform_piece_size.name %>
 </p>
 
 <p>
@@ -42,17 +37,22 @@
 
 <p>
   <strong>Uniform piece kind:</strong>
-  <%= @uniform_piece.uniform_piece_kind %>
+  <%= @uniform_piece.uniform_piece_kind.name %>
 </p>
 
 <p>
   <strong>Uniform piece group:</strong>
-  <%= @uniform_piece.uniform_piece_group %>
+  <%= @uniform_piece.uniform_piece_group.name %>
+</p>
+
+<p>
+  <strong>Usado:</strong>
+  <%= @uniform_piece.used %>
 </p>
 
 <p>
   <strong>Employer:</strong>
-  <%= @uniform_piece.employer %>
+  <%= @uniform_piece.employer.name unless @uniform_piece.employer.nil? %>
 </p>
 
 <%= link_to 'Edit', edit_uniform_piece_path(@uniform_piece) %> |

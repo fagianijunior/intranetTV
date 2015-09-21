@@ -38,14 +38,19 @@ ActiveRecord::Schema.define(version: 20150916030744) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "uniform_piece_sizes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "uniform_pieces", force: :cascade do |t|
     t.date     "entry"
     t.date     "delivered"
     t.text     "delivery_reason"
     t.date     "returned"
     t.text     "return_reason"
-    t.integer  "clothing_size"
-    t.integer  "shoes_size"
+    t.integer  "uniform_piece_size_id"
     t.string   "color"
     t.integer  "uniform_piece_kind_id"
     t.integer  "uniform_piece_group_id"
@@ -58,8 +63,10 @@ ActiveRecord::Schema.define(version: 20150916030744) do
   add_index "uniform_pieces", ["employer_id"], name: "index_uniform_pieces_on_employer_id", using: :btree
   add_index "uniform_pieces", ["uniform_piece_group_id"], name: "index_uniform_pieces_on_uniform_piece_group_id", using: :btree
   add_index "uniform_pieces", ["uniform_piece_kind_id"], name: "index_uniform_pieces_on_uniform_piece_kind_id", using: :btree
+  add_index "uniform_pieces", ["uniform_piece_size_id"], name: "index_uniform_pieces_on_uniform_piece_size_id", using: :btree
 
   add_foreign_key "uniform_pieces", "employers"
   add_foreign_key "uniform_pieces", "uniform_piece_groups"
   add_foreign_key "uniform_pieces", "uniform_piece_kinds"
+  add_foreign_key "uniform_pieces", "uniform_piece_sizes"
 end

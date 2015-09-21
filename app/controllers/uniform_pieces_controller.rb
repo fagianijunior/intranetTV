@@ -21,6 +21,23 @@ class UniformPiecesController < ApplicationController
   def edit
   end
 
+  def returned
+    @uniform_piece = UniformPiece.find(params[:id])
+    employer = @uniform_piece.employer
+    
+    @uniform_piece.assign_attributes(employer_id: nil, used: true, returned: Date.today)
+    
+    respond_to do |format|
+      if @uniform_piece.save(validate: false)
+        format.html { redirect_to employer_path(employer), notice: 'Uniforme devolvido para o estoque com sucesso.' }
+      else
+        format.html { redirect_to employer_path, notice: 'Ocorreu um erro ao devolver uniforme para o estoque.' }
+      end
+  end
+
+  end
+
+
   # POST /uniform_pieces
   # POST /uniform_pieces.json
   def create
@@ -73,6 +90,6 @@ class UniformPiecesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def uniform_piece_params
-      params.require(:uniform_piece).permit(:amount, :entry, :delivered, :delivery_reason, :returned, :return_reason, :clothing_size, :shoes_size, :color, :uniform_piece_kind_id, :uniform_piece_group_id, :used, :employer_id)
+      params.require(:uniform_piece).permit(:amount, :entry, :delivered, :delivery_reason, :returned, :return_reason, :uniform_piece_size_id, :color, :uniform_piece_kind_id, :uniform_piece_group_id, :used, :employer_id)
     end
 end

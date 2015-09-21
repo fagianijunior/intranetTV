@@ -1,0 +1,108 @@
+<hr>
+<h1>Uniformes</h1>
+<hr>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Adicionar peça de uniforme</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Controle</th>
+              <th>Grupo</th>
+              <th>Tipo</th>
+              <th>Tamanho</th>
+              <th>Usado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @uniform_pieces.each do |uniform_piece| %>
+            <tr>
+              <th><%= uniform_piece.id %></th>
+              <th><%= uniform_piece.uniform_piece_group.name %></th>
+              <th><%= uniform_piece.uniform_piece_kind.name %></th>
+              <th><%= uniform_piece.uniform_piece_size.name %></th>
+              <th><%= uniform_piece.used ? 'Sim' : 'Não' %></th>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--
+id
+entry
+delivered
+delivery_reason
+returned
+return_reason
+uniform_piece_size_id
+color
+uniform_piece_kind_id
+uniform_piece_group_id
+used
+employer_id
+created_at
+updated_at
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Controle</th>
+      <th>Grupo</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Cor</th>
+      <th>Data para troca</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employer.uniform_pieces.each do |uniform_piece| %>
+      <tr>
+        <td>#<%= uniform_piece.id.to_s.rjust(5,'0') %></td>
+        <td><%= link_to uniform_piece.uniform_piece_group.name, uniform_piece %></td>
+        <td><%= uniform_piece.uniform_piece_kind.name %></td>
+        <td><%= uniform_piece.uniform_piece_size.name %></td>
+        <td><%= uniform_piece.color %></td>
+        <td><%= ((uniform_piece.entry + 1.year) - Date.today).to_i %> dias</td>
+        <td><%= link_to 'Devolver', returned_uniform_piece_path(uniform_piece), method: :put, data: { confirm: 'Têm certeza que deseja devolver a peça para o estoque?' } %></td>
+        <td><%= link_to 'Editar', edit_uniform_piece_path(uniform_piece) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

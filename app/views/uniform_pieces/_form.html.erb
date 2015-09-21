@@ -39,28 +39,15 @@
     <%= if !f.object.new_record?
           f.input :return_reason, label: 'Obs. sobre devolução da peça pelo funcionário:'
         end %>
-    <%= f.input :clothing_size, label: 'Tamanho da peça: (se aplicável)',
+    <%= f.association :uniform_piece_size, label: 'Tamanho da peça:',
                                 as: :select,
-                                prompt: 'Não aplicável',
-                                selected: @uniform_piece.clothing_size,
-                                collection: [["PP", 0],
-                                             ["P", 1],
-                                             ["M", 2],
-                                             ["G", 3],
-                                             ["GG", 4],
-                                             ["3G", 5],
-                                             ["4G", 6],
-                                             ["5G", 7]] %>
-    <%= f.input :shoes_size, label: 'Tamanho do calçado: (se aplicável)',
-                             as: :select,
-                             prompt: 'Não aplicável',
-                             selected: @uniform_piece.shoes_size,
-                             collection: 33..44 %>
+                                prompt: 'Tamanho',
+                                selected: @uniform_piece.uniform_piece_size_id %>
     <%= f.input :color, label: "Cor:" %>
     <%= if !f.object.new_record?
           f.input :used, label: 'Peça usada'
     end %>
-    <!-- %= f.association :employer %-->
+    <%= f.association :employer %>
   </div>
 
   <div class="form-actions">
