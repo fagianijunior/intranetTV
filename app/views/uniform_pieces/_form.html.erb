@@ -15,8 +15,8 @@
                         end_year: Date.today.year + 5,
                         start_year: Date.today.year - 5,
                         order: [:day, :month, :year] %>
-    <%= f.association :uniform_piece_kind, label: 'Tipo de peça:' %>
-    <%= f.association :uniform_piece_group, label: 'Grupo:' %>
+    <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path})").html_safe %>
+    <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path})").html_safe %>
     <%= if !f.object.new_record?
           f.input :delivered, label: 'Data de entrega ao funcionário:',
                               as: :date,
@@ -44,7 +44,9 @@
                                 prompt: 'Tamanho',
                                 selected: @uniform_piece.uniform_piece_size_id %>
     <%= f.input :color, label: "Cor:" %>
-    <%= f.input :used, label: 'Peça usada' %>
+    <%= if !f.object.new_record?
+          f.input :used, label: 'Peça usada'
+        end %>
     <%= if !f.object.new_record?
           f.association :employer
         end %>

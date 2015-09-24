@@ -4,6 +4,7 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'bootstrap-table-rails'
+
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
