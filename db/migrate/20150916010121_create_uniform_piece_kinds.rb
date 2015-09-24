@@ -5,5 +5,6 @@ class CreateUniformPieceKinds < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :uniform_piece_kinds, :name, unique: true
   end
 end

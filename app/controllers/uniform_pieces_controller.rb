@@ -21,11 +21,26 @@ class UniformPiecesController < ApplicationController
   def edit
   end
 
-  def returned
+  def stock_deliver
+    @uniform_piece = UniformPiece.find(params[:id])
+    employer = params[:employer_id]
+    @uniform_piece.assign_attributes(employer_id: employer, used: true, delivered: Date.today)
+    
+    respond_to do |format|
+      if @uniform_piece.save(validate: false)
+        format.html { redirect_to employer_path(employer), notice: 'Uniforme entregue ao funcionário com sucesso.' }
+      else
+        format.html { redirect_to employer_path, notice: 'Ocorreu um erro ao devolver uniforme para o estoque.' }
+      end
+    end
+    
+  end
+
+  def employee_return
     @uniform_piece = UniformPiece.find(params[:id])
     employer = @uniform_piece.employer
     
-    @uniform_piece.assign_attributes(employer_id: nil, used: true, returned: Date.today)
+    @uniform_piece.assign_attributes(employer_id: nil, returned: Date.today)
     
     respond_to do |format|
       if @uniform_piece.save(validate: false)
@@ -33,8 +48,7 @@ class UniformPiecesController < ApplicationController
       else
         format.html { redirect_to employer_path, notice: 'Ocorreu um erro ao devolver uniforme para o estoque.' }
       end
-  end
-
+    end
   end
 
 

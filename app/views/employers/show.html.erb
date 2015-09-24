@@ -29,7 +29,7 @@
     <div class="col-md-6 column">
       <p>
         <% if @employer.avatar %>
-          <%= image_tag @employer.avatar %>
+          <%= image_tag @employer.avatar, width: 200 %>
         <% else %>
           <%= image_tag 'large_avatar.png' %>
         <% end %>

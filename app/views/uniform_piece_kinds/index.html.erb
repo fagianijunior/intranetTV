@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Uniform Piece Kinds</h1>
+<h1>Tipos de uniforme</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Tipo</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,9 +14,7 @@
     <% @uniform_piece_kinds.each do |uniform_piece_kind| %>
       <tr>
         <td><%= uniform_piece_kind.name %></td>
-        <td><%= link_to 'Show', uniform_piece_kind %></td>
-        <td><%= link_to 'Edit', edit_uniform_piece_kind_path(uniform_piece_kind) %></td>
-        <td><%= link_to 'Destroy', uniform_piece_kind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_uniform_piece_kind_path(uniform_piece_kind) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Uniform piece kind', new_uniform_piece_kind_path %>
+<%= link_to 'Criar novo tipo de uniforme', new_uniform_piece_kind_path %>

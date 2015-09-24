@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-table
+//= require extensions/bootstrap-table-filter-control
 //= require_tree .

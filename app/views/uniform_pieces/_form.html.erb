@@ -44,10 +44,10 @@
                                 prompt: 'Tamanho',
                                 selected: @uniform_piece.uniform_piece_size_id %>
     <%= f.input :color, label: "Cor:" %>
+    <%= f.input :used, label: 'Peça usada' %>
     <%= if !f.object.new_record?
-          f.input :used, label: 'Peça usada'
-    end %>
-    <%= f.association :employer %>
+          f.association :employer
+        end %>
   </div>
 
   <div class="form-actions">

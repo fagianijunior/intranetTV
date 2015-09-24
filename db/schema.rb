@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20150916030744) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "uniform_piece_kinds", ["name"], name: "index_uniform_piece_kinds_on_name", unique: true, using: :btree
+
   create_table "uniform_piece_sizes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

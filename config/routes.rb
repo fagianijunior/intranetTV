@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :uniform_pieces do 
     member do
-      put 'returned'
+      put 'employee_return'
+      put 'stock_deliver'
     end
   end
 

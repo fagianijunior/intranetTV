@@ -15,21 +15,25 @@
         <table class="table">
           <thead>
             <tr>
+              <th>&nbsp;</th>
               <th>Controle</th>
               <th>Grupo</th>
               <th>Tipo</th>
               <th>Tamanho</th>
               <th>Usado</th>
+              <th>Entrada no estoque</th>
             </tr>
           </thead>
           <tbody>
             <% @uniform_pieces.each do |uniform_piece| %>
             <tr>
+              <th><%= link_to '+', stock_deliver_uniform_piece_path(uniform_piece, employer_id: @employer.id), method: :put, data: { confirm: 'Têm certeza que deseja entregar a peça para o funcionário?' } %></th>
               <th><%= uniform_piece.id %></th>
               <th><%= uniform_piece.uniform_piece_group.name %></th>
               <th><%= uniform_piece.uniform_piece_kind.name %></th>
               <th><%= uniform_piece.uniform_piece_size.name %></th>
               <th><%= uniform_piece.used ? 'Sim' : 'Não' %></th>
+              <th><%= uniform_piece.entry.strftime("%d-%m-%Y") %></th>
             </tr>
             <% end %>
           </tbody>
@@ -41,42 +45,7 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-<!--
-id
-entry
-delivered
-delivery_reason
-returned
-return_reason
-uniform_piece_size_id
-color
-uniform_piece_kind_id
-uniform_piece_group_id
-used
-employer_id
-created_at
-updated_at
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 <table class="table">
@@ -100,7 +69,7 @@ updated_at
         <td><%= uniform_piece.uniform_piece_size.name %></td>
         <td><%= uniform_piece.color %></td>
         <td><%= ((uniform_piece.entry + 1.year) - Date.today).to_i %> dias</td>
-        <td><%= link_to 'Devolver', returned_uniform_piece_path(uniform_piece), method: :put, data: { confirm: 'Têm certeza que deseja devolver a peça para o estoque?' } %></td>
+        <td><%= link_to 'Devolver', employee_return_uniform_piece_path(uniform_piece), method: :put, data: { confirm: 'Têm certeza que deseja devolver a peça para o estoque?' } %></td>
         <td><%= link_to 'Editar', edit_uniform_piece_path(uniform_piece) %></td>
       </tr>
     <% end %>

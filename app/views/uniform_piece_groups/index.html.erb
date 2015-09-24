@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Uniform Piece Groups</h1>
+<h1>Grupos de uniformes</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Nome</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -14,9 +14,7 @@
     <% @uniform_piece_groups.each do |uniform_piece_group| %>
       <tr>
         <td><%= uniform_piece_group.name %></td>
-        <td><%= link_to 'Show', uniform_piece_group %></td>
-        <td><%= link_to 'Edit', edit_uniform_piece_group_path(uniform_piece_group) %></td>
-        <td><%= link_to 'Destroy', uniform_piece_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_uniform_piece_group_path(uniform_piece_group) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Uniform piece group', new_uniform_piece_group_path %>
+<%= link_to 'Criar novo grupo de uniforme', new_uniform_piece_group_path %>

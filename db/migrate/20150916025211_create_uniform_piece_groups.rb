@@ -5,5 +5,6 @@ class CreateUniformPieceGroups < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :uniform_piece_groups, :name, unique: true
   end
 end
