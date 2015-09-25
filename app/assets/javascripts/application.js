@@ -6,7 +6,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require twitter/bootstrap
 //= require bootstrap-table
+
 //= require extensions/bootstrap-table-filter-control
+
+//= require moment
+//= require moment/pt-br
+
+//= require bootstrap-datetimepicker
+//= require pickers
+
 //= require_tree .

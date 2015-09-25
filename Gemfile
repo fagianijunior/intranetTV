@@ -4,7 +4,8 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'bootstrap-table-rails'
-
+gem 'momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

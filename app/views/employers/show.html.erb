@@ -19,8 +19,8 @@
           <th><%= @employer.admission.strftime("%d/%m/%Y") %></th>
         </tr>
         <tr>
-          <th>Ativo:</th>
-          <th><%= "Sim" if !@employer.dismiss %></th>
+          <th><%= "Data de demissão:" unless !@employer.dismiss %></th>
+          <th><%= @employer.dismiss ? @employer.dismiss.strftime("%d/%m/%Y") : "Usuário ativo" %></th>
         </tr>
       </table>
       <%= link_to 'Editar', edit_employer_path(@employer), class: "btn btn-default" %>

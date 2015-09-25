@@ -10,32 +10,24 @@
         else
           f.input :amount, as: :hidden, input_html: { value: 0 }
         end %>
-    <%= f.input :entry, label: 'Data de entrada no estoque:',
-                        as: :date,
-                        end_year: Date.today.year + 5,
-                        start_year: Date.today.year - 5,
-                        order: [:day, :month, :year] %>
+    <div class='datetimerange'>
+      <%= f.input :entry, label: 'Data de entrada no estoque:', as: :date_picker %>
+    </div>
     <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path})").html_safe %>
     <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path})").html_safe %>
-    <%= if !f.object.new_record?
-          f.input :delivered, label: 'Data de entrega ao funcionário:',
-                              as: :date,
-                              prompt: '---',
-                              end_year: Date.today.year + 5,
-                              start_year: Date.today.year - 5,
-                              order: [:day, :month, :year]
-        end %>
+    <div class='datetimerange'>
+      <%= if !f.object.new_record?
+            f.input :delivered, label: 'Data de entrega ao funcionário:', as: :date_picker
+      end %>
+    </div>
     <%= if !f.object.new_record?
           f.input :delivery_reason, label: 'Obs. sobre entrega da peça ao funcionário:'
         end %>
-    <%= if !f.object.new_record?
-          f.input :returned, label: 'Data de devolução:',
-                             as: :date,
-                             prompt: '---',
-                             end_year: Date.today.year + 5,
-                             start_year: Date.today.year - 5,
-                             order: [:day, :month, :year]
-        end %>
+    <div class='datetimerange'>
+      <%= if !f.object.new_record?
+            f.input :returned, label: 'Data de devolução:', as: :datepicker
+      end %>
+    </div>
     <%= if !f.object.new_record?
           f.input :return_reason, label: 'Obs. sobre devolução da peça pelo funcionário:'
         end %>
