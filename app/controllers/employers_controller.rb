@@ -4,7 +4,7 @@ class EmployersController < ApplicationController
   # GET /employers
   # GET /employers.json
   def index
-    @employers = Employer.all
+    @employers = Employer.order(:name)
   end
 
   # GET /employers/1
