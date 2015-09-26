@@ -69,6 +69,7 @@
                         <th data-field="color"      data-sortable="true" data-filter-control="select">Cor</th>
                         <th data-field="kind"       data-sortable="true" data-filter-control="select">Tipo</th>
                         <th data-field="group"      data-sortable="true" data-filter-control="select">Grupo</th>
+                        <th data-field="gender"     data-sortable="true" data-filter-control="select">Gênero</th>
                         <th data-field="employer"   data-sortable="true" data-filter-control="select">Funcionário</th>
                         <th data-field="used"       data-sortable="true">Usado</th>
                       </tr>
@@ -85,6 +86,12 @@
                           <td><%= uniform_piece.color %></td>
                           <td><%= uniform_piece.uniform_piece_kind.name %></td>
                           <td><%= uniform_piece.uniform_piece_group.name %></td>
+                          <td><%= case uniform_piece.gender
+                                    when 'M'
+                                      'Masculino'
+                                    when 'F'
+                                      'Feminino'
+                                  end  %></td>
                           <td><%= link_to(uniform_piece.employer.name.split(" ")[0], employer_path(uniform_piece.employer)) if !uniform_piece.employer.nil? %></td>
                           <td><%= "Usado" unless !uniform_piece.used? %></td>
                         </tr>
