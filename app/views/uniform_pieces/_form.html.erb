@@ -13,8 +13,14 @@
     <div class='datetimerange'>
       <%= f.input :entry, label: 'Data de entrada no estoque:', as: :date_picker %>
     </div>
-    <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path})").html_safe %>
-    <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path})").html_safe %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path})").html_safe %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path})").html_safe %>
+      </div>
+    </div>
     <div class='datetimerange'>
       <%= if !f.object.new_record?
             f.input :delivered, label: 'Data de entrega ao funcionário:', as: :date_picker
@@ -25,26 +31,33 @@
         end %>
     <div class='datetimerange'>
       <%= if !f.object.new_record?
-            f.input :returned, label: 'Data de devolução:', as: :datepicker
+            f.input :returned, label: 'Data de devolução:', as: :date_picker
       end %>
     </div>
     <%= if !f.object.new_record?
           f.input :return_reason, label: 'Obs. sobre devolução da peça pelo funcionário:'
         end %>
-    <%= f.association :uniform_piece_size, label: 'Tamanho da peça:',
-                                as: :select,
-                                prompt: 'Tamanho',
-                                selected: @uniform_piece.uniform_piece_size_id %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :uniform_piece_size, label: 'Tamanho da peça:',
+                                                as: :select,
+                                                prompt: 'Tamanho',
+                                                selected: @uniform_piece.uniform_piece_size_id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :gender, label: 'Gênero:',
+                              prompt: 'Gênero',
+                              as: :select,
+                              collection: [['Masculino', 'M'],['Faminino','F']] %>
+      </div>
+    </div>
     <%= f.input :color, label: "Cor:" %>
     <%= if !f.object.new_record?
-          f.input :used, label: 'Peça usada'
-        end %>
-    <%= if !f.object.new_record?
-          f.association :employer
+            f.input :used, label: 'Peça usada'
         end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, value: 'Salvar' %>
+    <%= f.button :submit, value: 'Salvar', class: "btn btn-primary btn-block" %>
   </div>
 <% end %>

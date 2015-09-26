@@ -104,6 +104,6 @@ class UniformPiecesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def uniform_piece_params
-      params.require(:uniform_piece).permit(:amount, :entry, :delivered, :delivery_reason, :returned, :return_reason, :uniform_piece_size_id, :color, :uniform_piece_kind_id, :uniform_piece_group_id, :used, :employer_id)
+      params.require(:uniform_piece).permit(:amount, :entry, :delivered, :delivery_reason, :returned, :return_reason, :uniform_piece_size_id, :color, :uniform_piece_kind_id, :uniform_piece_group_id, :gender, :used, :employer_id)
     end
 end

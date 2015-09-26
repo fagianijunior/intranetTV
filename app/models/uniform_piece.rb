@@ -6,5 +6,5 @@ class UniformPiece < ActiveRecord::Base
 
   attr_accessor :amount
 
-  validates :amount, :entry, :uniform_piece_kind, :uniform_piece_group, :uniform_piece_size, :color, presence: true
+  validates :amount, :entry, :uniform_piece_kind, :uniform_piece_group, :uniform_piece_size, :gender, :color, presence: true
 end
