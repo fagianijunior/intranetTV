@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AdminController
   before_action :require_user
   before_action :require_admin, only: [:index, :new, :create, :destroy]
   before_action :is_logged_user?, only: [:show, :edit, :update]
