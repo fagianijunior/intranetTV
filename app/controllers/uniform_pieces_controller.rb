@@ -1,4 +1,5 @@
 class UniformPiecesController < ApplicationController
+  before_action :require_user
   before_action :set_uniform_piece, only: [:show, :edit, :update, :destroy]
 
   # GET /uniform_pieces

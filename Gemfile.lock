@@ -46,6 +46,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    authorization (1.0.12)
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-table-rails (1.8.2.1)
@@ -155,6 +157,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authorization
+  bcrypt (~> 3.1.7)
   bootstrap-table-rails
   byebug
   datetimepicker-rails!

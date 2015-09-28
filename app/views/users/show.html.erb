@@ -1,0 +1,18 @@
+<p>
+  <strong>Nome:</strong>
+  <%= link_to @user.employer.name, employer_path(@user.employer.id) %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Regra:</strong>
+  <%= @user.role %>
+</p>
+
+<%= link_to 'Editar', edit_user_path(@user) %> |
+<%= link_to 'Voltar', users_path %>
+

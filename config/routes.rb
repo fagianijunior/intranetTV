@@ -1,17 +1,24 @@
 Rails.application.routes.draw do
-  resources :uniform_pieces do 
+
+  scope '/admin' do
+    resources :users
+  end
+
+  get 'admin/index'
+
+  resources :employers, :uniform_piece_groups, :uniform_piece_kinds
+  
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  resources :uniform_pieces do
     member do
       put 'employee_return'
       put 'stock_deliver'
     end
   end
 
-  resources :uniform_piece_groups
-  get 'home/index'
-
-  resources :uniform_piece_kinds
-  resources :employers
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

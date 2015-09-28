@@ -1,0 +1,18 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :employer, label: 'Dados do funcionário:', disabled: !current_user.admin? %>
+    <%= f.input :role, label: 'Regra:',
+                          as: :select,
+                          default: 'default',
+                          collection: [['Padrão', 'default'], ['Administrador', 'admin']], disabled: !current_user.admin? %>
+    <%= f.input :email, label: 'E-mail:' %>
+    <%= f.input :password, label: 'Senha:' %>
+    <%= f.input :password_confirmation, label: 'Repita a senha:' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
