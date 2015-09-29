@@ -52,9 +52,8 @@
       </div>
     </div>
     <%= f.input :color, label: "Cor:" %>
-    <%= if !f.object.new_record?
-            f.input :used, label: 'Peça usada'
-        end %>
+     <!-- if !f.object.new_record? -->
+          <%= f.input :used, label: 'Peça usada' %>
   </div>
 
   <div class="form-actions">
