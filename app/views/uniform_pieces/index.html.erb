@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Uniformes</h1>
 
 <div class="row">
@@ -62,16 +60,16 @@
                     <thead>
                       <tr>
                         <th data-filed="id"         data-sortable="true">#</th>
-                        <th data-field="entry"      data-sortable="true" data-filter-control="input">Entrada no estoque</th>
-                        <th data-field="delivered"  data-sortable="true" data-filter-control="input">Entregue ao funcionário</th>
-                        <th data-field="returned"   data-sortable="true" data-filter-control="input">Devolução p/ estoque</th>
-                        <th data-field="size"       data-sortable="true" data-filter-control="select">Tamanho</th>
-                        <th data-field="color"      data-sortable="true" data-filter-control="select">Cor</th>
                         <th data-field="kind"       data-sortable="true" data-filter-control="select">Tipo</th>
                         <th data-field="group"      data-sortable="true" data-filter-control="select">Grupo</th>
                         <th data-field="gender"     data-sortable="true" data-filter-control="select">Gênero</th>
-                        <th data-field="employer"   data-sortable="true" data-filter-control="select">Funcionário</th>
+                        <th data-field="size"       data-sortable="true" data-filter-control="select">Tamanho</th>
+                        <th data-field="color"      data-sortable="true" data-filter-control="select">Cor</th>
                         <th data-field="used"       data-sortable="true">Usado</th>
+                        <th data-field="employer"   data-sortable="true" data-filter-control="select">Funcionário</th>
+                        <th data-field="entry"      data-sortable="true" data-filter-control="input">Entrada no estoque</th>
+                        <th data-field="delivered"  data-sortable="true" data-filter-control="input">Entregue ao funcionário</th>
+                        <th data-field="returned"   data-sortable="true" data-filter-control="input">Devolução p/ estoque</th>
                       </tr>
                     </thead>
                   
@@ -79,21 +77,16 @@
                       <% @uniform_pieces.order(:id).each do |uniform_piece| %>
                         <tr>
                           <td><%= uniform_piece.id %></td>
+                          <td><%= uniform_piece.uniform_piece_kind.name %></td>
+                          <td><%= uniform_piece.uniform_piece_group.name %></td>
+                          <td><%= gender(uniform_piece.gender) %></td>
+                          <td><%= uniform_piece.uniform_piece_size.name %></td>
+                          <td><%= uniform_piece.color %></td>
+                          <td><%= "Usado" unless !uniform_piece.used? %></td>
+                          <td><%= link_to(uniform_piece.employer.name.split(" ")[0], employer_path(uniform_piece.employer)) if !uniform_piece.employer.nil? %></td>
                           <td><%= uniform_piece.entry.strftime("%d/%m/%Y") %></td>
                           <td><%= uniform_piece.delivered.strftime("%d/%m/%Y") if !uniform_piece.delivered.nil? %></td>
                           <td><%= uniform_piece.returned.strftime("%d/%m/%Y") if !uniform_piece.returned.nil? %></td>
-                          <td><%= uniform_piece.uniform_piece_size.name %></td>
-                          <td><%= uniform_piece.color %></td>
-                          <td><%= uniform_piece.uniform_piece_kind.name %></td>
-                          <td><%= uniform_piece.uniform_piece_group.name %></td>
-                          <td><%= case uniform_piece.gender
-                                    when 'M'
-                                      'Masculino'
-                                    when 'F'
-                                      'Feminino'
-                                  end  %></td>
-                          <td><%= link_to(uniform_piece.employer.name.split(" ")[0], employer_path(uniform_piece.employer)) if !uniform_piece.employer.nil? %></td>
-                          <td><%= "Usado" unless !uniform_piece.used? %></td>
                         </tr>
                       <% end %>
                     </tbody>

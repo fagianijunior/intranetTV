@@ -1,10 +1,14 @@
-<h1>Logar</h1>
+<div class="row">
+  <div class="col-md-6" column>
+    <h1 class="text-center">Logar</h1>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-6 column">
     <%= simple_form_for(:session, url: login_path) do |f| %>
-      <%= f.input :email, label: 'E-mail:' %>
-      <%= f.input :password, label: 'Senha:' %>
-      <%= f.submit %>
+      <%= f.input :email, label: false, placeholder: 'E-mail' %>
+      <%= f.input :password, label: false, placeholder: 'Senha' %>
+      <%= f.submit 'Logar', class: 'btn btn-primary btn-block' %>
     <% end %>
   </div>
 </div>
