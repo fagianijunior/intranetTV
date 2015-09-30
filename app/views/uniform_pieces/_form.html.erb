@@ -1,6 +1,6 @@
 <div class="form-inputs">
   <label>Controle:</label>
-  <input type="text" class="form-control" value="#<%= @uniform_piece.id.to_s.rjust(4, '0') %>" disabled> 
+  <input type="text" class="form-control" value="#<%= @uniform_piece.id.to_s.rjust(4, '0') %>" disabled>
 </div>
 
 <%= simple_form_for(@uniform_piece) do |f| %>
@@ -9,9 +9,7 @@
   <div class="form-inputs">
     <%= if f.object.new_record?
           f.input :amount, label: 'Quantidade de entrada:',
-                           as: :select,
-                           default: 1,
-                          collection: 1..20
+                           as: :integer, input_html: { min: '1', step: 'any', value: 1 }
         else
           f.input :amount, as: :hidden, input_html: { value: 0 }
         end %>
