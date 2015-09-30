@@ -76,7 +76,7 @@
                     <tbody>
                       <% @uniform_pieces.order(:id).each do |uniform_piece| %>
                         <tr>
-                          <td><%= uniform_piece.id %></td>
+                          <td><%= link_to uniform_piece.id, uniform_piece_path(uniform_piece) %></td>
                           <td><%= uniform_piece.uniform_piece_kind.name %></td>
                           <td><%= uniform_piece.uniform_piece_group.name %></td>
                           <td><%= gender(uniform_piece.gender) %></td>
