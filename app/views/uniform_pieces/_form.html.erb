@@ -1,3 +1,8 @@
+<div class="form-inputs">
+  <label>Controle:</label>
+  <input type="text" class="form-control" value="#<%= @uniform_piece.id.to_s.rjust(4, '0') %>" disabled> 
+</div>
+
 <%= simple_form_for(@uniform_piece) do |f| %>
   <%= f.error_notification %>
 
