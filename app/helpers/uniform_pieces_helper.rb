@@ -5,6 +5,8 @@ module UniformPiecesHelper
         'Masculino'
       when 'F'
         'Feminino'
+      when 'U'
+        'Unisex'
     end
   end
 end
