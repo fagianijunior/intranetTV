@@ -66,4 +66,5 @@
 </p>
 
 <%= link_to 'Editar', edit_uniform_piece_path(@uniform_piece) %> |
-<%= link_to 'Voltar', uniform_pieces_path %>
+<%= link_to 'Voltar', uniform_pieces_path %> |
+<%= link_to 'Remover', @uniform_piece, method: :delete, data: { confirm: 'Você têm certeza?' } %>
