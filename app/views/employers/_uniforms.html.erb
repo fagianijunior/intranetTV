@@ -9,44 +9,84 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Adicionar peças ao funcionário</h4>
       </div>
       <div class="modal-body">
-        <table class="table">
+        <table id="pieces"
+                 data-toggle="table"
+                 data-page-size="5"
+                 data-page-list="[5,10,20,40,80,100]"
+                 data-pagination="true"
+                 data-id-field="id"
+                 data-click-to-select="true"
+                 data-maintain-selected="true"
+                 data-pagination-first-text="Primieiro"
+                 data-pagination-pre-text="Anterior"
+                 data-pagination-next-text="Próximo"
+                 data-pagination-last-text="Último"
+                 data-checkbox-header="false"
+                 data-filter-control="true">
           <thead>
             <tr>
-              <th>&nbsp;</th>
-              <th>Controle</th>
-              <th>Grupo</th>
-              <th>Tipo</th>
-              <th>Tamanho</th>
-              <th>Usado</th>
-              <th>Entrada no estoque</th>
+              <th data-field="state"    data-checkbox="true"></th>
+              <th data-field="id"       data-sortable="true">#</th>
+              <th data-field="kind"     data-sortable="true" data-filter-control="select">Tipo</th>
+              <th data-field="group"    data-sortable="true" data-filter-control="select">Grupo</th>
+              <th data-field="gender"   data-sortable="true" data-filter-control="select">Gênero</th>
+              <th data-field="size"     data-sortable="true" data-filter-control="select">Tamanho</th>
+              <th data-field="color"    data-sortable="true" data-filter-control="select">Cor</th>
+              <th data-field="used"     data-sortable="true" data-filter-control="select">Usado</th>
             </tr>
           </thead>
           <tbody>
             <% @uniform_pieces.each do |uniform_piece| %>
-            <tr>
-              <th><%= link_to '+', stock_deliver_uniform_piece_path(uniform_piece, employer_id: @employer.id), method: :put, data: { confirm: 'Têm certeza que deseja entregar a peça para o funcionário?' } %></th>
-              <th><%= uniform_piece.id %></th>
-              <th><%= uniform_piece.uniform_piece_group.name %></th>
-              <th><%= uniform_piece.uniform_piece_kind.name %></th>
-              <th><%= uniform_piece.uniform_piece_size.name %></th>
-              <th><%= uniform_piece.used ? 'Sim' : 'Não' %></th>
-              <th><%= uniform_piece.entry.strftime("%d-%m-%Y") %></th>
-            </tr>
+              <tr>
+                <td></td>
+                <td><%= uniform_piece.id %></td>
+                <td><%= uniform_piece.uniform_piece_kind.name %></td>
+                <td><%= uniform_piece.uniform_piece_group.name %></td>
+                <td><%= gender(uniform_piece.gender) %></td>
+                <td><%= uniform_piece.uniform_piece_size.name %></td>
+                <td><%= uniform_piece.color %></td>
+                <td><%= "Usado" unless !uniform_piece.used? %></td>
+              </tr>
             <% end %>
           </tbody>
         </table>
+        <hr>
+        <%= simple_form_for :pieces, url: uniform_pieces_to_employer_path, method: :post do |f| %>
+          <table id="piecesToEmployer"
+                  data-toggle="table"
+                  data-id-field="id"
+                  data-unique-id="id"
+                  data-checkbox-header="false"
+                  data-select-item-name="pieces[]">
+            <thead>
+              <tr>
+                <th data-checkbox="true"  data-field="state"></th>
+                <th data-field="id"       data-sortable="true">#</th>
+                <th data-field="kind"     data-sortable="true" data-filter-control="select">Tipo</th>
+                <th data-field="group"    data-sortable="true" data-filter-control="select">Grupo</th>
+                <th data-field="gender"   data-sortable="true" data-filter-control="select">Gênero</th>
+                <th data-field="size"     data-sortable="true" data-filter-control="select">Tamanho</th>
+                <th data-field="color"    data-sortable="true" data-filter-control="select">Cor</th>
+                <th data-field="used"     data-sortable="true" data-filter-control="select">Usado</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <input name="employer" value="<%= @employer.id %>" type="hidden">
+          <%= f.submit 'Salvar', class: "btn btn-default", id: "btnSalvar" %>
+
+        <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 </div>
-
 
 <table class="table">
   <thead>
@@ -69,7 +109,7 @@
         <td><%= uniform_piece.uniform_piece_size.name %></td>
         <td><%= uniform_piece.color %></td>
         <td><%= ((uniform_piece.entry + 1.year) - Date.today).to_i %> dias</td>
-        <td><%= link_to 'Devolver', employee_return_uniform_piece_path(uniform_piece), method: :put, data: { confirm: 'Têm certeza que deseja devolver a peça para o estoque?' } %></td>
+
         <td><%= link_to 'Editar', edit_uniform_piece_path(uniform_piece) %></td>
       </tr>
     <% end %>

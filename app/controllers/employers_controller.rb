@@ -11,11 +11,7 @@ class EmployersController < ApplicationController
   # GET /employers/1
   # GET /employers/1.json
   def show
-    @groups = UniformPieceGroup.all.uniq
-    @kinds = UniformPieceKind.all.uniq
-    @sizes = UniformPieceSize.all.uniq.order(:id)
-    
-    @uniform_pieces = UniformPiece.where(employer_id: nil)
+    @uniform_pieces = UniformPiece.where(employer_id: nil, gender: [@employer.sex, 'U'])
   end
 
   # GET /employers/new

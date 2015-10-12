@@ -22,19 +22,33 @@ class UniformPiecesController < ApplicationController
   def edit
   end
 
-  def stock_deliver
-    @uniform_piece = UniformPiece.find(params[:id])
-    employer = params[:employer_id]
-    @uniform_piece.assign_attributes(employer_id: employer, used: true, delivered: Date.today)
-    
-    respond_to do |format|
-      if @uniform_piece.save(validate: false)
-        format.html { redirect_to employer_path(employer), notice: 'Uniforme entregue ao funcionário com sucesso.' }
+  def is_free?(pieces)
+    pieces.each do |piece|
+      if !piece.employer_id.nil?
+        return false
       else
-        format.html { redirect_to employer_path, notice: 'Ocorreu um erro ao devolver uniforme para o estoque.' }
+        return true
       end
     end
-    
+  end
+  
+  def to_employer
+    @employer = Employer.find(params[:employer])
+    pieces = UniformPiece.find(params[:pieces])
+
+    if is_free?(pieces)
+      pieces.each do |piece|
+        piece.amount = 0
+        piece.delivered = Date.today
+        piece.employer = @employer
+        piece.save
+      end
+    else
+      
+    end
+
+    @uniform_pieces = UniformPiece.where(id: params[:pieces])
+
   end
 
   def employee_return

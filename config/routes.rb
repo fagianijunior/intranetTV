@@ -12,12 +12,10 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  resources :uniform_pieces do
-    member do
-      put 'employee_return'
-      put 'stock_deliver'
-    end
-  end
+  post 'uniform_pieces/to_employer' => 'uniform_pieces#to_employer'
+  get 'uniform_pieces/to_employer' => 'uniform_pieces#to_employer'
+
+  resources :uniform_pieces
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
