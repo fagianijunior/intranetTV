@@ -18,10 +18,10 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path})").html_safe %>
+        <%= f.association :uniform_piece_kind, label: ("Tipo de peça: (#{link_to 'Criar novo tipo', new_uniform_piece_kind_path, remote: true})").html_safe %>
       </div>
       <div class="col-md-6">
-        <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path})").html_safe %>
+        <%= f.association :uniform_piece_group, label: ("Grupo: (#{link_to 'Criar novo grupo', new_uniform_piece_group_path, remote: true})").html_safe %>
       </div>
     </div>
     <div class='datetimerange'>
