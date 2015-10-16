@@ -1,76 +1,65 @@
 <div class="row">
   <div class="col col-md-12">
     <%= link_to("Imprimir", "#", onclick: "PrintDiv();", class: 'btn btn-default') %>
-    
-    <div id="divToPrint">
-      <table>
-        <thead>
-          <tr style="border">
-            <th colspan="6" id="title">PROTOCOLO DE ENTREGA DE UNIFORME - <%= Date.current.to_formatted_s(:rfc822) %></th>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-          </tr>
-          <tr>
-            <th>Controle</th>
-            <th>Tipo</th>
-            <th>Grupo</th>
-            <th>Tamanho</th>
-            <th>Cor</th>
-            <th>Gênero</th>
-          </tr>
-        </thead>
-        <tbody>
+    <hr>
+
+    <div id="receiptToPrint">
+      <%= image_tag "logo385x255.png", width: "215" %>
+      <br><br><br>
+      <center>
+      <h1><strong>RECIBO</strong></h1>
+      </center>
+
+      <h3>Recebi de Stylo Viagens e Turismo LTDA os itens abaixo relacionados:</h3>
+
+      <table >
+      	<thead>
+      	  <tr>
+      	    <th><h4>Controle</h4></th>
+      			<th><h4>Tipo</h4></th>
+      			<th><h4>Grupo</h4></th>
+      			<th><h4>Tamanho</h4></th>
+      	  </tr>
+      	</thead>
+      	<tbody>
           <% @uniform_pieces.each do |uniform_piece| %>
             <tr>
               <td><%= uniform_piece.id %></td>
               <td><%= uniform_piece.uniform_piece_group.name %></td>
               <td><%= uniform_piece.uniform_piece_kind.name %></td>
               <td><%= uniform_piece.uniform_piece_size.name %></td>
-              <td><%= uniform_piece.color %></td>
-              <td><%= gender(uniform_piece.gender) %></td>
             </tr>
           <% end %>
-          <tr>
-            <td colspan="6">
-              &nbsp;
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="6">
-            &nbsp;
-            </td>
-          </tr>
-          <tr>
-            <td colspan="3">
-              Quantidade: <%= @uniform_pieces.count %>
-            </td>
-            <td colspan="3">
-              Nome: <%= @employer.name %>
-            </td>
-          </tr>
-        </tfoot>
+      	</tbody>
       </table>
-        
+
+      <br>
+
+      <h5><b>Obs.1:</b> O prazo m&iacute;nimo para a troca dos uniformes &eacute; de 01 (um) ano, caso n&atilde;o ocorra imprevistos.</h5>
+
+     <br><br><br><br>
+      <center>
+        __________________________________________________<br>
+        <h2>Carlos Fagiani Junior</h2>
+        <%= Date.current.to_formatted_s(:rfc822) %>
+      </center>
+
       <style>
+        #receiptToPrint {
+          width: 700px;
+        }
         table {
           border: 1px black solid;
           width: 700px;
         }
-        #title {
-          text-align: center; font-size: 20px;
-        }
-        
         thead {
           border: 2px black solid;
           }
-        tfoot, tbody tr {
+        tfoot, tbody tr td {
           border: 1px black solid;
         }
       </style>
     </div>
-    
+
   </div>
 </div>

@@ -14,7 +14,7 @@
           f.input :amount, as: :hidden, input_html: { value: 0 }
         end %>
     <div class='datetimerange'>
-      <%= f.input :entry, label: 'Data de entrada no estoque:', as: :date_picker %>
+      <%= f.input :entry, label: 'Data de entrada no estoque:', as: :date_picker, input_html: {data: {date_options: {defaultDate: Date.current }}} %>
     </div>
     <div class="row">
       <div class="col-md-6">

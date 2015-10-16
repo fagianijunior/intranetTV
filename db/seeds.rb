@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # uniformPieceSizes = UniformPieceSize.create([{name: 'PP'},{name: 'P'},{name: 'M'},{name: 'G'},{name: 'GG'},{name: 'G3'},{name: 'G4'},{name: 'G5'},{name: '33'},{name: '34'},{name: '35'},{name: '36'},{name: '37'},{name: '38'},{name: '39'},{name: '40'},{name: '41'},{name: '42'},{name: '43'},{name: '44'}])
+# employer = Employer.create([{name: 'Carlos Fagiani Junior', avatar: nil, sex: 'M', admission: Date.current, dismiss: nil}])
+# user = User.create([{email: 'fagianijunior@gmail.com', password: '123456', password_confirmation: '123456', employer_id: 1, role: 'admin'}])
