@@ -10,9 +10,9 @@
                       selected: @employer.sex,
                       collection: [['Masculino', 'M'], ['Feminino', 'F']] %>
     <div class='datetimerange'>
-      <%= f.input :admission, label: 'Admissão:', as: :date_picker %>
+      <%= f.input :admission, label: 'Admissão:', as: :date_picker, input_html: {data: {date_options: {defaultDate: Date.current }}}%>
       <%= if !f.object.new_record?
-            f.input :dismiss, label: 'Demissão:', as: :date_picker
+            f.input :dismiss, label: 'Demissão:', as: :date_picker, input_html: {data: {date_options: {defaultDate: '' }}}
       end %>
     </div>
   </div>

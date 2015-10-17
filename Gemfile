@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'authorization'
 
+gem 'carrierwave'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'

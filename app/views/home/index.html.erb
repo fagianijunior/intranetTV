@@ -1,5 +1,15 @@
 <div class="row">
-  <div class="col-md-12 column">
-    Aqui informaçcoes sobre a  area administrat
+  <div class="col-md-4 column well">
+    <h4>Últimos funcionários cadastrados</h4>
+    <ul class="list-unstyled">
+      <% Employer.last(5).each do |employer| %>
+        <li><%= employer.id %> - <%= link_to employer.name, employer %></li>
+      <% end %>
+    </ul>
+    <%= link_to "Ver todos", employers_path %>
+  </div>
+  <div class="col-md-4 column">
+  </div>
+  <div class="col-md-4 column">
   </div>
 </div>
