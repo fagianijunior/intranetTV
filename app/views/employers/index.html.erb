@@ -10,7 +10,7 @@
           <th>Nome</th>
           <th>Sexo</th>
           <th>Data de admissão:</th>
-          <th colspan="2"></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -22,7 +22,7 @@
             <td><%= (employer.sex == 'M') ? 'Masculino' : 'Feminino' %></td>
             <td><%= employer.admission.strftime("%d/%m/%Y") %></td>
             <td><%= link_to 'Editar', edit_employer_path(employer) %></td>
-            <td><%= link_to 'Remover', employer, method: :delete, data: { confirm: 'Você têm certeza?' } %></td>
+            <!-- td><%= link_to 'Remover', employer, method: :delete, data: { confirm: 'Você têm certeza?' } %></td -->
           </tr>
         <% end %>
       </tbody>
