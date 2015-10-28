@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module IntranetTv
   class Application < Rails::Application
-    
+    config.serve_static_files = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
