@@ -31,7 +31,7 @@ class UniformPiecesController < ApplicationController
       end
     end
   end
-  
+
   def to_employer
     @employer = Employer.find(params[:employer])
     pieces = UniformPiece.find(params[:pieces])
@@ -44,19 +44,22 @@ class UniformPiecesController < ApplicationController
         piece.save
       end
     else
-      
+
     end
 
     @uniform_pieces = UniformPiece.where(id: params[:pieces])
 
   end
 
+  def return_to_stock
+
+  end
   def employee_return
     @uniform_piece = UniformPiece.find(params[:id])
     employer = @uniform_piece.employer
-    
+
     @uniform_piece.assign_attributes(employer_id: nil, returned: Date.today)
-    
+
     respond_to do |format|
       if @uniform_piece.save(validate: false)
         format.html { redirect_to employer_path(employer), notice: 'Uniforme devolvido para o estoque com sucesso.' }
@@ -72,7 +75,7 @@ class UniformPiecesController < ApplicationController
   def create
     saved = false
     @uniform_piece = UniformPiece.new(uniform_piece_params)
-    
+
     1.upto(@uniform_piece.amount.to_i) do
       if @uniform_piece.save
         @uniform_piece = UniformPiece.new(uniform_piece_params)
@@ -90,10 +93,15 @@ class UniformPiecesController < ApplicationController
   # PATCH/PUT /uniform_pieces/1
   # PATCH/PUT /uniform_pieces/1.json
   def update
+    user = @uniform_piece.employer
     respond_to do |format|
       if @uniform_piece.update(uniform_piece_params)
-        format.html { redirect_to @uniform_piece, notice: 'Uniform piece was successfully updated.' }
-        format.json { render :show, status: :ok, location: @uniform_piece }
+        if @uniform_piece.employer_id.nil?
+          format.html { redirect_to user, notice: 'Uniform piece was successfully updated.' }
+        else
+          format.html { redirect_to @uniform_piece, notice: 'Uniform piece was successfully updated.' }
+          format.json { render :show, status: :ok, location: @uniform_piece }
+        end
       else
         format.html { render :edit }
         format.json { render json: @uniform_piece.errors, status: :unprocessable_entity }

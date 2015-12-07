@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   post 'uniform_pieces/to_employer' => 'uniform_pieces#to_employer'
   get 'uniform_pieces/to_employer' => 'uniform_pieces#to_employer'
+  
+  post 'uniform_pieces/return_to_stock' => 'uniform_pieces#return_to_stock'
+  get 'uniform_pieces/return_to_stock' => 'uniform_pieces#return_to_stock'
 
   resources :uniform_pieces
 

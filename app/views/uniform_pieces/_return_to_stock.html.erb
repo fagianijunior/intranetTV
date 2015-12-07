@@ -1,0 +1,24 @@
+<div class="form-inputs">
+  <label>Controle:</label>
+  <input type="text" class="form-control" value="#<%= @uniform_piece.id.to_s.rjust(4, '0') %>" disabled>
+</div>
+
+<%= simple_form_for(@uniform_piece) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :employer_id, as: :hidden, input_html: { value: '' } %>
+    <%= f.input :used, as: :hidden, input_html: { value: true } %>
+    <%= f.input :amount, as: :hidden,
+                         label: 'Quantidade de entrada:',
+                         input_html: { min: '1', step: 'any', value: 1 } %>
+  </div>
+  <div class='datetimerange'>
+    <%= f.input :returned, label: 'Data de devolução:', as: :date_picker, input_html: { value: date_br(Date.today) }, required: true %>
+  </div>
+  <%= f.input :return_reason, label: 'Obs. sobre devolução da peça pelo funcionário:', required: true %>
+
+  <div class="form-actions">
+    <%= f.button :submit, value: 'Remover', id: "submit_piece", class: "btn btn-primary btn-block", required: true %>
+  </div>
+<% end %>

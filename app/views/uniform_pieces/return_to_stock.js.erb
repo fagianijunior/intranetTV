@@ -1,0 +1,5 @@
+$('.modal-title').html('Devolver peça');
+$('.modal-body').html('<% @uniform_piece = UniformPiece.find(params[:up]) %>');
+$('.modal-body').html('<%= escape_javascript(render partial: "return_to_stock") %>');
+$('.modal-footer').remove();
+$("#myModal").modal('show');
